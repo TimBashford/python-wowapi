@@ -827,3 +827,18 @@ class GameDataMixin:
         """
         filters['namespace'] = namespace
         return self.get_resource('data/wow/token/index', region, **filters)
+
+    #Toys
+    def get_toy_index(self, region, namespace, **filters):
+        """
+        Toy API - Returns an index of toys
+        """
+        filters['namespace'] = namespace
+        return self.get_resource('data/wow/toy/index', region, **filters)
+
+    def get_toy_data(self, region, namespace, id, **filters):
+        """
+        Toy API - Returns a toy by id
+        """
+        filters['namespace'] = namespace
+        return self.get_resource('data/wow/toy/{0}', region, *[id], **filters)

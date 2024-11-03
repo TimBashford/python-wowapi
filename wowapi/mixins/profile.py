@@ -52,6 +52,14 @@ class ProfileMixin:
         filters['namespace'] = namespace
         resource = 'profile/user/wow/collections/pets'
         return self.get_oauth_resource(resource, region, token, **filters)
+    
+    def get_toy_collection_summary(self, region, namespace, token, **filters):
+        """
+        Returns a summary of the toys an account has obtained
+        """
+        filters['namespace'] = namespace
+        resource = 'profile/user/wow/collections/toys'
+        return self.get_oauth_resource(resource, region, token, **filters)
 
     # Character Achievements API
 
@@ -119,6 +127,16 @@ class ProfileMixin:
         """
         filters['namespace'] = namespace
         resource = 'profile/wow/character/{0}/{1}/collections/pets'
+        return self.get_resource(resource, region, *[realm_slug, character_name], **filters)
+    
+    def get_character_toy_collection_index(
+        self, region, namespace, realm_slug, character_name, **filters
+    ):
+        """
+        Character Collections API - Returns a summary of the toys a character has obtained
+        """
+        filters['namespace'] = namespace
+        resource = 'profile/wow/character/{0}/{1}/collections/toys'
         return self.get_resource(resource, region, *[realm_slug, character_name], **filters)
 
     # Character Encounters API
